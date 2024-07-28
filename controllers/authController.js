@@ -7,12 +7,12 @@ export const loginController = async (req, res) => {
     const { email, password } = req.body;
     const user = await UserModel.findOne({ email });
     if (!user) {
-      return res.status(400).json({ error: "Username already exists" });
+      return res.status(400).json({ error: "Username does'nt exists" });
     }
 
     const check = await bcrypt.compare(password, user.password || "");
     if (!check) {
-      return res.status(400).json({ error: "Username already exists" });
+      return res.status(400).json({ error: "Incorrect Password" });
     }
 
     generateJwtAndSendCookies(user._id, res);

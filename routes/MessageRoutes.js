@@ -1,8 +1,10 @@
 import { Router } from "express"
-import { sendMessage } from "../controllers/messageController.js";
+import { getMessages, sendMessage } from "../controllers/messageController.js";
+import validateToken from "../middlewares/validateToken.js";
 const messageRouter = Router();
 
-messageRouter.post("/send/:id",sendMessage);
+messageRouter.get("/:id",validateToken,getMessages);
+messageRouter.post("/send/:id",validateToken,sendMessage);
 
 
 

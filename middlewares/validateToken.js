@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import UserModel from "../models/userModel.js";
 
-export default validateToken = async (req, res, next) => {
+const validateToken = async (req, res, next) => {
   try {
     const token = req.cookies.accessToken;
     if (!token) {
@@ -22,3 +22,5 @@ export default validateToken = async (req, res, next) => {
     res.status(500).json({ error: "Internal Server error" });
   }
 };
+
+export default validateToken;
